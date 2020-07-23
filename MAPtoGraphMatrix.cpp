@@ -2,22 +2,25 @@
 #include<vector>
 #include<limits>
 #include<cmath>
+
 using namespace std;
 
+typedef float xyz_t;
+
 struct Map{
-double width; /* X coordinate */
-double length; /* Y coordinate */
-double height; /* Z coordinate */
-double resolution; /* the size of the grids*/
+xyz_t width; /* X coordinate */
+xyz_t length; /* Y coordinate */
+xyz_t height; /* Z coordinate */
+xyz_t resolution; /* the size of the grids*/
 };
 
 struct Node
 {
     int index;
-    double x;
-    double y;
-    double z;
-    double dist=numeric_limits<double>::max();//distance to the
+    xyz_t x;
+    xyz_t y;
+    xyz_t z;
+    xyz_t dist=numeric_limits<xyz_t>::max();//distance to the
     int parent=0;
     vector<int> nbrIndexs;
     vector<int> nbrCost;
@@ -25,8 +28,8 @@ struct Node
 
 
 int main(){
-Map myMap{40,40,40,.5}; // select the size of th emap
-double eps=myMap.resolution/100;
+Map myMap{40,40,40,.86}; // select the size of th emap
+xyz_t eps=myMap.resolution/100;
 
 int dimention[3]={static_cast<int>(myMap.width/myMap.resolution)+1,static_cast<int>(myMap.length/myMap.resolution)+1,static_cast<int>(myMap.height/myMap.resolution)+1};
 int N; //the number of total nodes
