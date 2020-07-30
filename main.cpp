@@ -1,7 +1,6 @@
 /* Mohammad Karimi */
-// Here, we develop a Dijkstra Algorithm in 3D
+// Here, we develop a Dijkstra Algorithm
 // we use adjacency matrix related to a graph extracted from an occupancy-grid
-// the algorithm is developed based on "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/" + https://autorob.org/lectures/autorob_02_graph_search.pdf
 
 #include <cmath>
 #include<limits>
@@ -14,15 +13,15 @@ using namespace std;
 static int V; // Number of nodes in the graph which can be updated for each new graph
 struct Node
 {
-    double dist=numeric_limits<double>::max();
+    double dist=numeric_limits<double>::max();// shortest distance from the source
     int index;
-    int parent=0;
+    int parent=0; // parent of the node in the path tree
 };
-bool compare(Node n1, Node n2){
+bool compare(const Node &n1, const Node &n2){ //compare function to sort nodes based on the smallest shortest path
 return n1.dist<n2.dist;
 }
 
-bool findNotExist(vector<Node> sptSet, Node v )
+bool findNotExist(const vector<Node> &sptSet, const Node &v )
 {
   for(int i=0;i<static_cast<int>(sptSet.size());++i)
   { if (sptSet[i].index==v.index)
@@ -31,15 +30,20 @@ bool findNotExist(vector<Node> sptSet, Node v )
   return true;
 }
 
-void printSolution(vector<Node> nodes) // A function to print the the solution, here we print only the shortest time from start to end nodes
+void printSolution(const vector<Node> &nodes) // A function to print the the solution, here we print only the shortest time from start to end nodes
 {
+    printf("%s\t\t", "node index");	
+    printf("%s\t\t", "shortest distance"); // the shortest distance from source to that node
+    printf("%s\n", "parent index");
 for (int i=0;i<V;++i){
-    printf("%.3f\t", nodes[i].dist);
-    printf("%i\n", nodes[i].parent);
+	
+    printf("%i\t\t\t", i);	
+    printf("%.3f\t\t\t\t", nodes[i].dist); // the shortest distance from source to that node
+    printf("%i\n", nodes[i].parent);// the parents
   }
 }
 
-void dijkstra(const vector<vector<double>> &graph, int src) // the function for dijkstra algorithm;
+void dijkstra(const vector<vector<double>> &graph, int src) // the function for dijkstra algorithm; src is the source node
 {
 V=(graph).size();
 vector<Node> nodes{};
@@ -87,10 +91,6 @@ vector<vector<double>> GRAPH{   {0, 4, 0, 0, 0, 0, 0, 8, 0},
                                 {8, 11, 0, 0, 0, 0, 1, 0, 7},
                                 {0, 0, 2, 0, 0, 0, 6, 7, 0}};
 
-
-//for (int i=0;i<40;++i)
 dijkstra((GRAPH), 0);
-//printf("%2f\n",node.cost2start);
-//printf("%i\n",node.parent);
 return 0;}
 
