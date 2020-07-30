@@ -81,7 +81,7 @@ sort(visitQueue.begin(), visitQueue.end(), compare);
 
 
 int main(){
-vector<vector<double>> GRAPH{   {0, 4, 0, 0, 0, 0, 0, 8, 0},
+vector<vector<double>> GRAPH{   {0, 4, 0, 0, 0, 0, 0, 8, 0}, // just an example of adjacency matrix to show the lagorithm works
                                 {4, 0, 8, 0, 0, 0, 0, 11, 0},
                                 {0, 8, 0, 7, 0, 4, 0, 0, 2},
                                 {0, 0, 7, 0, 9, 14, 0, 0, 0},
